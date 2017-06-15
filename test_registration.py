@@ -16,15 +16,15 @@ class TestRedistration(unittest.TestCase):
 
         reg_data = {
             'first_name': 'Vova',
-            'last_name' : 'ZiLvova',
-            'email'     : 'vovan@gmail.com',
-            'password'  : 'pwd3256',
+            'last_name': 'ZiLvova',
+            'email': 'vovan@gmail.com',
+            'password': 'pwd3256',
             'confirmation': 'ppwd3256'
         }
 
         for field, value in reg_data.items():
             page.find_element(field).send_keys(value)
-
+        page.find_element('newsletter_chbx').click()
         page.find_element('register_btn').click()
 
-        self.assertEqual()
+        self.assertTrue(page.is_password_validation_error)
