@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 from reg_page import RegistrationPage
+from random import randint
 
 
 class TestRedistration(unittest.TestCase):
@@ -28,3 +29,21 @@ class TestRedistration(unittest.TestCase):
         page.find_element('register_btn').click()
 
         self.assertTrue(page.is_password_validation_error)
+
+        # "bla: {} {}".format(arg1,arg2)
+
+    def test_registration_success(self):
+        page = RegistrationPage(self.browser)
+
+        reg_data = {
+            'first_name': 'Vova',
+            'last_name': 'ZiLvova',
+            'email': 'vovan+{}@gmail.com'.format(randint(0, 100)),
+            'password': 'password1',
+            'confirmation': 'password1'
+        }
+
+        for field, value in reg_data.items():
+            page.find_element(field).send_keys(value)
+        page.find_element('newsletter_chbx').click()
+        page.find_element('register_btn').click()
