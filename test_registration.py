@@ -47,3 +47,15 @@ class TestRedistration(unittest.TestCase):
             page.find_element(field).send_keys(value)
         page.find_element('newsletter_chbx').click()
         page.find_element('register_btn').click()
+
+        ##########################
+
+        # page.find_element('ACCOUNT_lb').click()
+        # page.find_element('Log Out_lnk').click()
+
+    # def log_out(self):
+    #
+    #     page.find_element('ACCOUNT_lb').click()
+    #     page.find_element('Log Out_lnk').click()
+
+

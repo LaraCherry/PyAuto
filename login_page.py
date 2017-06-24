@@ -1,16 +1,30 @@
 from base_page import BasePage
 from selenium.webdriver.common.by import By
+import yaml
 
 
 class LoginPage(BasePage):
     def __init__(self, browser):
+        # super() calls parent method
         super(LoginPage, self).__init__(browser)
+        self.settings = yaml.load(open('settings.yaml'))
+
+        base_url = self.settings['base_url']
         self.url = 'http://magento-demo.lexiconn.com/customer/account/login/'
+        # locators mappings (css)
         self.locators = {
             'email': '//input[@name="login[username]"]',
             'password': '//input[@name="login[password]"]',
             'login_btn': '//button[@type="submit"]',
-            'forgot_lnk': '//a[text()="Forgot Your Password?"]'
+            'forgot_lnk': '//a[text()="Forgot Your Password?"]',
+            
+            # search
+            'search_input': '//input[@id="search"]',
+            'search_results': '//div[@id="search_autocomplete"]/ul/li[@title]',
+
+            # # logout
+            # 'label_span': '//span[@class="label"]',
+            # '': '',
         }
 
     def login(self, email, pwd):
@@ -24,3 +38,6 @@ class LoginPage(BasePage):
 
     def forgot_account(self):
         self.find_element('forgot_lnk').click()
+
+    def search(self, query):
+        self.find_element('search_input').send_keys(query)

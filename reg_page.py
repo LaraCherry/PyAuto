@@ -22,6 +22,7 @@ class RegistrationPage(BasePage):
             # account menu
             'menu': '//a[contains(@class, "skip-account")]',
             'menu_register': '//div[@id="header-account"]//a[text()="Register"]',  # сложный xpath
+
         }
 
     @property
